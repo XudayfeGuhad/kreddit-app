@@ -5,7 +5,7 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
   "mainAssemblyName": "kreddit-app",
   "applicationEnvironment": "Development",
   "resources": {
-    "hash": "sha256-0qa/ftXu4h3QOtG7jut+1k+fTBo1x2DyVhaCfxPVfXs=",
+    "hash": "sha256-7Dpfo4jDS2sDexOtet0brCt5PNQqCIKIeUpgxEbAfOg=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.b6l13xorvf.js"
@@ -182,12 +182,6 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
         "virtualPath": "Microsoft.AspNetCore.WebUtilities.wasm",
         "name": "Microsoft.AspNetCore.WebUtilities.ehka61vc6z.wasm",
         "hash": "sha256-zh9kvkqMSOPtXyohSY0mX0Rd9TZs4iSuVmu2kWW4vX8=",
-        "cache": "force-cache"
-      },
-      {
-        "virtualPath": "Microsoft.DotNet.HotReload.WebAssembly.Browser.wasm",
-        "name": "Microsoft.DotNet.HotReload.WebAssembly.Browser.u1l3a5juxx.wasm",
-        "hash": "sha256-rkSJmrNjT+DDhN4udKoNeMbmFoWTmHrBxWR9/0TMJcw=",
         "cache": "force-cache"
       },
       {
@@ -1356,39 +1350,45 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
       },
       {
         "virtualPath": "shared.wasm",
-        "name": "shared.xy75jo3plr.wasm",
-        "hash": "sha256-Z4XTLctiwkiaDICzebZeWzHKiB3QlL9GNW1XwqqifBM=",
+        "name": "shared.foktl3ne9n.wasm",
+        "hash": "sha256-7x7GUvwWemN+rSFXuzl+Eaf3g7TtykktBbmeKI5qDno=",
+        "cache": "force-cache"
+      },
+      {
+        "virtualPath": "Microsoft.DotNet.HotReload.WebAssembly.Browser.wasm",
+        "name": "Microsoft.DotNet.HotReload.WebAssembly.Browser.u1l3a5juxx.wasm",
+        "hash": "sha256-rkSJmrNjT+DDhN4udKoNeMbmFoWTmHrBxWR9/0TMJcw=",
         "cache": "force-cache"
       },
       {
         "virtualPath": "kreddit-app.wasm",
-        "name": "kreddit-app.uvyfpzdced.wasm",
-        "hash": "sha256-WlMhExPmQvADW2Ix5y3ZPDFUl20B/8uCQoEkpRdHRnM=",
+        "name": "kreddit-app.ddjz1keqd9.wasm",
+        "hash": "sha256-L+LxTQpIOjXjG99jcOvXEgCafY1ih5LM+ligRxXVWQQ=",
         "cache": "force-cache"
       }
     ],
     "pdb": [
       {
         "virtualPath": "shared.pdb",
-        "name": "shared.cpjn49t2yz.pdb",
-        "hash": "sha256-gKQZadrnkU68vCtrJZYeLYOf5fFtU41UHeoLR1OkFzI=",
+        "name": "shared.d4pogbpucg.pdb",
+        "hash": "sha256-0z4veEzbwauG9VdgPzt8szkKNYamDFTiFTKvPAXIanE=",
         "cache": "force-cache"
       },
       {
         "virtualPath": "kreddit-app.pdb",
-        "name": "kreddit-app.lu1jtczsbj.pdb",
-        "hash": "sha256-41I2H7WCWNSvczPero1GB23i8yc/2eAtFUNsade9kDc=",
+        "name": "kreddit-app.69pg4o00vt.pdb",
+        "hash": "sha256-JjhbXWj2NRCEo1P5tVUMDMkNpLPz1jDolj4lEdqBiO8=",
         "cache": "force-cache"
       }
     ],
     "libraryInitializers": [
       {
-        "name": "_content/Microsoft.DotNet.HotReload.WebAssembly.Browser/Microsoft.DotNet.HotReload.WebAssembly.Browser.99zm1jdh75.lib.module.js"
+        "name": "_framework/Microsoft.DotNet.HotReload.WebAssembly.Browser.8z9nwe4k30.lib.module.js"
       }
     ],
     "modulesAfterConfigLoaded": [
       {
-        "name": "../_content/Microsoft.DotNet.HotReload.WebAssembly.Browser/Microsoft.DotNet.HotReload.WebAssembly.Browser.99zm1jdh75.lib.module.js"
+        "name": "../_framework/Microsoft.DotNet.HotReload.WebAssembly.Browser.8z9nwe4k30.lib.module.js"
       }
     ]
   },
