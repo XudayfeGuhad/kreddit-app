@@ -5,7 +5,7 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
   "mainAssemblyName": "kreddit-app",
   "applicationEnvironment": "Development",
   "resources": {
-    "hash": "sha256-7Dpfo4jDS2sDexOtet0brCt5PNQqCIKIeUpgxEbAfOg=",
+    "hash": "sha256-hRTt2tToM0rRcQxInJOdX15OxpMQz7S3K2+ORSScZbY=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.b6l13xorvf.js"
@@ -1350,8 +1350,8 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
       },
       {
         "virtualPath": "shared.wasm",
-        "name": "shared.foktl3ne9n.wasm",
-        "hash": "sha256-7x7GUvwWemN+rSFXuzl+Eaf3g7TtykktBbmeKI5qDno=",
+        "name": "shared.g1cqs6pqxq.wasm",
+        "hash": "sha256-dEO0u00X5/Y1HhApRsZtSqt+G2qmM2UYq0u9nECqwdg=",
         "cache": "force-cache"
       },
       {
@@ -1362,22 +1362,22 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
       },
       {
         "virtualPath": "kreddit-app.wasm",
-        "name": "kreddit-app.ddjz1keqd9.wasm",
-        "hash": "sha256-L+LxTQpIOjXjG99jcOvXEgCafY1ih5LM+ligRxXVWQQ=",
+        "name": "kreddit-app.n4v94fuzhd.wasm",
+        "hash": "sha256-KToHp2YWrUHVR1TTWRlg838pUyFZpm2/3JXjoy5N1SI=",
         "cache": "force-cache"
       }
     ],
     "pdb": [
       {
         "virtualPath": "shared.pdb",
-        "name": "shared.d4pogbpucg.pdb",
-        "hash": "sha256-0z4veEzbwauG9VdgPzt8szkKNYamDFTiFTKvPAXIanE=",
+        "name": "shared.d8t1wdlpnx.pdb",
+        "hash": "sha256-w7H0Tz9+L8q+JGeyFcN5RFAO78LJaRKh9943BCSwuyU=",
         "cache": "force-cache"
       },
       {
         "virtualPath": "kreddit-app.pdb",
-        "name": "kreddit-app.69pg4o00vt.pdb",
-        "hash": "sha256-JjhbXWj2NRCEo1P5tVUMDMkNpLPz1jDolj4lEdqBiO8=",
+        "name": "kreddit-app.usaszucf91.pdb",
+        "hash": "sha256-ruBbdGfdOPdwv2iG0n50W5fEIiolq3KNRPMXAC9wjN8=",
         "cache": "force-cache"
       }
     ],

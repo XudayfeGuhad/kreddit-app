@@ -1,37 +1,79 @@
-<h3>CreatePost</h3>
+@page "/new"
 
 @using kreddit_app.Data
-@using shared.Model
 @inject ApiService apiService
 @inject NavigationManager NavigationManager
 
-<div>
-    <br/>
-    <h3>Create a new Post</h3>
-    <input placeholder="Title" type="input" id="postTitle" @bind-value="postTitle"/>
-    <input placeholder="Content" type="input" id="postContent" @bind-value="postContent"/>
-    <button id="createPostButton" type="button" @onclick="CreateNewPost">Create Post</button>
+<PageTitle>New post - Kreddit</PageTitle>
+
+<p><a href="/">&larr; Back to front page</a></p>
+
+<h3>Create a new post</h3>
+
+<div style="max-width: 600px;">
+    <div class="mb-3">
+        <label class="form-label" for="author">Your name</label>
+        <input id="author" class="form-control" @bind="author" @bind:event="oninput" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="title">Title</label>
+        <input id="title" class="form-control" @bind="title" @bind:event="oninput" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="content">Text or URL</label>
+        <textarea id="content" class="form-control" rows="5" @bind="content" @bind:event="oninput"></textarea>
+    </div>
+
+    @if (error != null)
+    {
+        <p class="text-danger">@error</p>
+    }
+
+    <button class="btn btn-primary" type="button" disabled="@busy" @onclick="Submit">Create post</button>
 </div>
 
 @code {
-    private string? postTitle;
-    private string? postContent;
+    private string author = "";
+    private string title = "";
+    private string content = "";
+    private string? error;
+    private bool busy;
 
-    private async Task CreateNewPost()
+    private async Task Submit()
     {
-        Console.WriteLine("Creating new post");
+        error = null;
 
-        if (postTitle == null || postContent == null)
+        if (string.IsNullOrWhiteSpace(author))
         {
+            error = "Please enter your name.";
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(title))
+        {
+            error = "Please enter a title.";
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(content))
+        {
+            error = "Please enter some text or a URL.";
             return;
         }
 
-        Console.WriteLine(postTitle + " " + postContent);
-
-        // TODO: Provide list of users from dropdown, or maybe just convert
-        // from username to UserId
-        await apiService.CreatePost(postTitle, postContent, 2); // UserID: 2
-
-        NavigationManager.NavigateTo("/", true);
+        busy = true;
+        try
+        {
+            var created = await apiService.CreatePost(title.Trim(), content.Trim(), author.Trim());
+            NavigationManager.NavigateTo($"/post/{created.Id}");
+        }
+        catch (HttpRequestException)
+        {
+            error = "Could not create the post. Is the API running?";
+        }
+        finally
+        {
+            busy = false;
+        }
     }
 }

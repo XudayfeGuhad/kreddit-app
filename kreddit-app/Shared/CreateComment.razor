@@ -1,27 +1,67 @@
-@using kreddit_app.Data;
+@using kreddit_app.Data
 @inject ApiService apiService
 
-<div>
-    <br/>
-    <h3>Write a comment</h3>
-    <input placeholder="Content" type="input" id="content" @bind-value="content"/>
-    <button id="createPostButton" type="button" @onclick="CreateNewComment">Post comment</button>
+<div class="border rounded p-3 mt-4">
+    <h5>Write a comment</h5>
+
+    <div class="mb-2">
+        <input class="form-control" placeholder="Your name" @bind="author" @bind:event="oninput" />
+    </div>
+
+    <div class="mb-2">
+        <textarea class="form-control" rows="3" placeholder="Comment" @bind="content" @bind:event="oninput"></textarea>
+    </div>
+
+    @if (error != null)
+    {
+        <p class="text-danger">@error</p>
+    }
+
+    <button class="btn btn-primary" type="button" disabled="@busy" @onclick="Submit">Post comment</button>
 </div>
 
 @code {
-
-    // PostId is passed in from the parent component. See how in PostItem.razor.
     [Parameter]
     public int PostId { get; set; }
-    private string? content;
-    private async void CreateNewComment()
+
+    // Kaldes når kommentaren er oprettet, så tråd-siden kan genindlæses
+    [Parameter]
+    public EventCallback OnCreated { get; set; }
+
+    private string author = "";
+    private string content = "";
+    private string? error;
+    private bool busy;
+
+    private async Task Submit()
     {
-        if (content == null)
+        error = null;
+
+        if (string.IsNullOrWhiteSpace(author))
         {
+            error = "Please enter your name.";
             return;
         }
-        // TODO: Provide list of users from dropdown, or maybe just convert
-        // from username to UserId
-        await apiService.CreateComment(content, PostId, 2); // UserId: 2
+        if (string.IsNullOrWhiteSpace(content))
+        {
+            error = "Please write a comment.";
+            return;
+        }
+
+        busy = true;
+        try
+        {
+            await apiService.CreateComment(PostId, content.Trim(), author.Trim());
+            content = "";
+            await OnCreated.InvokeAsync();
+        }
+        catch (HttpRequestException)
+        {
+            error = "Could not post the comment. Is the API running?";
+        }
+        finally
+        {
+            busy = false;
+        }
     }
 }

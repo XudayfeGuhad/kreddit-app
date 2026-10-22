@@ -14,44 +14,49 @@ build_property.ProjectTypeGuids =
 build_property.InvariantGlobalization = false
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EntryPointFilePath = 
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = kreddit-app
 build_property.RootNamespace = kreddit-app
-build_property.ProjectDir = /Users/xudayfeguhad/Downloads/kreddit 3/kreddit/kreddit-app/
+build_property.ProjectDir = /Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = false
-build_property.RazorLangVersion = 9.0
+build_property.RazorLangVersion = 10.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/xudayfeguhad/Downloads/kreddit 3/kreddit/kreddit-app
+build_property.MSBuildProjectDirectory = /Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[/Users/xudayfeguhad/Downloads/kreddit 3/kreddit/kreddit-app/App.razor]
+[/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/xudayfeguhad/Downloads/kreddit 3/kreddit/kreddit-app/Pages/Index.razor]
+[/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/Pages/CreatePost.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ3JlYXRlUG9zdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/xudayfeguhad/Downloads/kreddit 3/kreddit/kreddit-app/Pages/PostItem.razor]
+[/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/Pages/PostItem.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUG9zdEl0ZW0ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/xudayfeguhad/Downloads/kreddit 3/kreddit/kreddit-app/Pages/PostList.razor]
+[/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/Pages/PostList.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUG9zdExpc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/xudayfeguhad/Downloads/kreddit 3/kreddit/kreddit-app/Shared/CreateComment.razor]
+[/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/Shared/CreateComment.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NyZWF0ZUNvbW1lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/xudayfeguhad/Downloads/kreddit 3/kreddit/kreddit-app/_Imports.razor]
+[/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/xudayfeguhad/Downloads/kreddit 3/kreddit/kreddit-app/Shared/MainLayout.razor]
+[/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-lpy2fgilm8

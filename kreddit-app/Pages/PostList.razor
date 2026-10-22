@@ -1,61 +1,73 @@
-﻿@inherits LayoutComponentBase
-
-@using kreddit_app.Data;
-@using shared.Model;
+﻿@using kreddit_app.Data
+@using shared.Model
 @inject ApiService apiService
-
-@using Microsoft.Extensions.Configuration
-@inject IConfiguration Configuration
 
 @if (posts == null)
 {
     <p><em>Loading...</em></p>
 }
+else if (posts.Count == 0)
+{
+    <p><em>No posts yet. Be the first to create one!</em></p>
+}
 else
 {
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Content</th>
-            <th colspan="3">Votes</th>
-        </tr>
-        @foreach (var post in posts)
-        {
+    <table class="table align-middle">
+        <thead>
             <tr>
-                <!-- 
-                    These a href links will match the route in the page 'PostItem.razor'.
-                    The route is defined as "/post/{id}" and the id is the post id.
-                -->
-                <td><a href="/post/@post.Id">@post.Title</a></td>
-                <td>@post.Content</td>
-                <td>@(post.Upvotes - post.Downvotes)</td>
-                <td><button @onclick="() => Upvote(post.Id)">Upvote</button></td>
-                <td><button @onclick="() => Downvote(post.Id)">Downvote</button></td>
-                
+                <th>Title</th>
+                <th>Author</th>
+                <th>Created</th>
+                <th>Comments</th>
+                <th colspan="3">Votes</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var post in posts)
+            {
+                <tr>
+                    <td>
+                        <a href="/post/@post.Id">@post.Title</a>
+                        <div class="small text-muted">@Preview(post)</div>
+                    </td>
+                    <td>@post.User?.Username</td>
+                    <td>@FormatDate(post.CreatedAt)</td>
+                    <td>@post.Comments.Count</td>
+                    <td>@(post.Upvotes - post.Downvotes)</td>
+                    <td><button class="btn btn-sm btn-outline-success" @onclick="() => Vote(post.Id, true)">Upvote</button></td>
+                    <td><button class="btn btn-sm btn-outline-danger" @onclick="() => Vote(post.Id, false)">Downvote</button></td>
+                </tr>
+            }
+        </tbody>
     </table>
-    <CreatePost></CreatePost>
-
-    <br/>
 }
 
 @code {
-    private Post[]? posts;
-    private Post? votePost;
+    private List<Post>? posts;
 
     protected override async Task OnInitializedAsync()
     {
-        posts = await apiService.GetPosts();
+        await Load();
     }
 
-    private async void Upvote(int id)
+    private async Task Load()
     {
-        var updatedPost = await apiService.UpvotePost(id);
+        var result = await apiService.GetPosts();
+        posts = result.OrderByDescending(p => p.CreatedAt).ToList();
     }
 
-    private async void Downvote(int id)
+    private async Task Vote(int id, bool up)
     {
-        Console.WriteLine("Not implemented 😪");
+        await apiService.VotePost(id, up);
+        await Load();
+    }
+
+    private static string FormatDate(DateTime date) =>
+        date.ToLocalTime().ToString("dd-MM-yyyy HH:mm");
+
+    private static string Preview(Post post)
+    {
+        var text = post.Content ?? "";
+        return text.Length > 80 ? text.Substring(0, 80) + "..." : text;
     }
 }

@@ -1,7 +1,6 @@
+using System.Net;
 using System.Net.Http.Json;
-using System.Text.Json;
 using Microsoft.Extensions.Configuration;
-
 using shared.Model;
 
 namespace kreddit_app.Data;
@@ -9,87 +8,81 @@ namespace kreddit_app.Data;
 public class ApiService
 {
     private readonly HttpClient http;
-    private readonly IConfiguration configuration;
-    private readonly string baseAPI = "";
+    private readonly string baseAPI;
 
     public ApiService(HttpClient http, IConfiguration configuration)
     {
         this.http = http;
-        this.configuration = configuration;
-        this.baseAPI = configuration["base_api"];
+        baseAPI = configuration["base_api"]
+            ?? throw new InvalidOperationException("'base_api' mangler i wwwroot/appsettings.json");
     }
 
+    // GET /posts/
     public async Task<Post[]> GetPosts()
     {
-        string url = $"{baseAPI}posts/";
-        return await http.GetFromJsonAsync<Post[]>(url);
+        var posts = await http.GetFromJsonAsync<Post[]>($"{baseAPI}posts/");
+        return posts ?? Array.Empty<Post>();
     }
 
-    public async Task<Post> GetPost(int id)
+    // GET /posts/{id}/  (null hvis tråden ikke findes)
+    public async Task<Post?> GetPost(int id)
     {
-        string url = $"{baseAPI}posts/{id}/";
-        return await http.GetFromJsonAsync<Post>(url);
+        var response = await http.GetAsync($"{baseAPI}posts/{id}/");
+
+        if (response.StatusCode == HttpStatusCode.NotFound)
+            return null;
+
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<Post>();
     }
 
-    public async Task<Comment> CreateComment(string content, int postId, int userId)
+    // POST /posts   (enten content eller url)
+    // POST /posts
+    public async Task<Post> CreatePost(string title, string content, string username)
     {
-        string url = $"{baseAPI}posts/{postId}/comments";
-     
-        // Post JSON to API, save the HttpResponseMessage
-        HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { content, userId });
-
-        // Get the JSON string from the response
-        string json = msg.Content.ReadAsStringAsync().Result;
-
-        // Deserialize the JSON string to a Comment object
-        Comment? newComment = JsonSerializer.Deserialize<Comment>(json, new JsonSerializerOptions {
-            PropertyNameCaseInsensitive = true // Ignore case when matching JSON properties to C# properties 
-        });
-
-        // Return the new comment 
-        return newComment;
-    }
-
-    public async Task<Post> UpvotePost(int id)
-    {
-        string url = $"{baseAPI}posts/{id}/upvote/";
-
-        // Post JSON to API, save the HttpResponseMessage
-        HttpResponseMessage msg = await http.PutAsJsonAsync(url, "");
-
-        // Get the JSON string from the response
-        string json = msg.Content.ReadAsStringAsync().Result;
-
-        // Deserialize the JSON string to a Post object
-        Post? updatedPost = JsonSerializer.Deserialize<Post>(json, new JsonSerializerOptions {
-            PropertyNameCaseInsensitive = true // Ignore case when matching JSON properties to C# properties
-        });
-
-        // Return the updated post (vote increased)
-        return updatedPost;
-    }
-    
-    public async Task<Post> CreatePost(string title, string content, int userId)
-    {
-        string url = $"{baseAPI}posts/";
-
         var post = new Post
         {
             Title = title,
             Content = content,
-            User = new User
-            {
-                Id = userId
-            }
+            User = new User { Username = username }
         };
 
-        HttpResponseMessage response = await http.PostAsJsonAsync(url, post);
-
+        var response = await http.PostAsJsonAsync($"{baseAPI}posts", post);
         response.EnsureSuccessStatusCode();
 
-        Post? createdPost = await response.Content.ReadFromJsonAsync<Post>();
-
-        return createdPost ?? throw new Exception("Failed to create post.");
+        var created = await response.Content.ReadFromJsonAsync<Post>();
+        return created ?? throw new Exception("Failed to create post.");
     }
 
+    // POST /posts/{id}/comments
+    public async Task<Comment> CreateComment(int postId, string content, string username)
+    {
+        var comment = new Comment
+        {
+            Content = content,
+            User = new User { Username = username }
+        };
+
+        var response = await http.PostAsJsonAsync($"{baseAPI}posts/{postId}/comments", comment);
+        response.EnsureSuccessStatusCode();
+
+        var created = await response.Content.ReadFromJsonAsync<Comment>();
+        return created ?? throw new Exception("Failed to create comment.");
+    }
+
+    // PUT /posts/{id}/upvote/ eller /downvote/
+    public async Task VotePost(int postId, bool up)
+    {
+        var action = up ? "upvote" : "downvote";
+        var response = await http.PutAsync($"{baseAPI}posts/{postId}/{action}/", null);
+        response.EnsureSuccessStatusCode();
+    }
+
+    // PUT /posts/{postId}/comments/{commentId}/upvote/ eller /downvote/
+    public async Task VoteComment(int postId, int commentId, bool up)
+    {
+        var action = up ? "upvote" : "downvote";
+        var response = await http.PutAsync($"{baseAPI}posts/{postId}/comments/{commentId}/{action}/", null);
+        response.EnsureSuccessStatusCode();
+    }
 }

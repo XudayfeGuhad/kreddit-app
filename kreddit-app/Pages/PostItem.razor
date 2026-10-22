@@ -1,80 +1,96 @@
-﻿<!-- 
-Notice how this route has a route parameter 'id'. This is how we can pass data to the route.
-See how the links are made in 'PostList.razor'.
--->
-@page "/post/{id}"
+﻿@page "/post/{Id:int}"
 
-@using kreddit_app.Data;
-@using shared.Model;
+@using kreddit_app.Data
+@using shared.Model
 @inject ApiService apiService
 
 <PageTitle>Kreddit</PageTitle>
 
-<style>
-div.contents {
-  background-color: #f2f0eb;
-  width: 600px;
-  border: 2px solid #452d3d;
-  padding: 10px;
-  margin-top: 20px;
-}
-</style>
+<p><a href="/">&larr; Back to front page</a></p>
 
-@if (Post == null)
+@if (loading)
 {
     <p><em>Loading...</em></p>
 }
+else if (post == null)
+{
+    <p>Post not found.</p>
+}
 else
 {
-    <div class="contents">
-        <h4>@Post.Title</h4>
-        <p><strong>User: @Post.User.Username, Votes: @(Post.Upvotes - Post.Downvotes)</strong></p>
-        <p>@Post.Content</p>
+    <div class="card mb-4">
+        <div class="card-body">
+            <h3>@post.Title</h3>
+
+            <p>@post.Content</p>
+
+            <p class="text-muted">
+                Posted by <strong>@post.User?.Username</strong> on @FormatDate(post.CreatedAt)
+            </p>
+
+            <p>
+                Votes: <strong>@(post.Upvotes - post.Downvotes)</strong>
+                <button class="btn btn-sm btn-outline-success ms-2" @onclick="() => VotePost(true)">Upvote</button>
+                <button class="btn btn-sm btn-outline-danger" @onclick="() => VotePost(false)">Downvote</button>
+            </p>
+        </div>
     </div>
 
-    <div class="contents">
     <h4>Comments</h4>
-    <table>
-        <tr>
-            <th>User</th>
-            <th>Comment</th>
-            <th colspan="3">Votes</th>
-        </tr>
-        @foreach (var comment in Post.Comments)
-        {
-            <tr>
-                <td>@comment.User.Username</td>
-                <td>@comment.Content</td>
-                <td>@(comment.Upvotes - comment.Downvotes)</td>
-                <td><button @onclick="() => Upvote(comment.Id)">Upvote</button></td>
-                <td><button @onclick="() => Downvote(comment.Id)">Downvote</button></td>
-            </tr>
-        }
-    </table>
-    </div>
 
-    <!-- This demonstrates how to pass in PostId to the component 'CreateComment'. See how 
-         it is used in the file CreateComment.razor -->
-    <CreateComment PostId=@PostId></CreateComment>
+    @if (post.Comments.Count == 0)
+    {
+        <p><em>No comments yet.</em></p>
+    }
+
+    @foreach (var comment in post.Comments.OrderBy(c => c.CreatedAt))
+    {
+        <div class="border rounded p-2 mb-2">
+            <p class="mb-1">@comment.Content</p>
+            <small class="text-muted">
+                by <strong>@comment.User?.Username</strong> on @FormatDate(comment.CreatedAt)
+            </small>
+            <div class="mt-1">
+                Votes: <strong>@(comment.Upvotes - comment.Downvotes)</strong>
+                <button class="btn btn-sm btn-outline-success ms-2" @onclick="() => VoteComment(comment.Id, true)">Upvote</button>
+                <button class="btn btn-sm btn-outline-danger" @onclick="() => VoteComment(comment.Id, false)">Downvote</button>
+            </div>
+        </div>
+    }
+
+    <CreateComment PostId="Id" OnCreated="Load"></CreateComment>
 }
 
 @code {
     [Parameter]
-    public string Id { get; set; }
-    public int PostId { get { return int.Parse(Id); } }
-    public Post Post { get; set; }
+    public int Id { get; set; }
+
+    private Post? post;
+    private bool loading = true;
 
     protected override async Task OnInitializedAsync()
     {
-        Post = await apiService.GetPost(PostId);
-    }
-    private async void Upvote(int id)
-    {
-        Console.WriteLine("Not implemented 😪");
+        await Load();
     }
 
-    private async void Downvote(int id)
+    private async Task Load()
     {
-        Console.WriteLine("Not implemented 😪");
+        post = await apiService.GetPost(Id);
+        loading = false;
     }
+
+    private async Task VotePost(bool up)
+    {
+        await apiService.VotePost(Id, up);
+        await Load();
+    }
+
+    private async Task VoteComment(int commentId, bool up)
+    {
+        await apiService.VoteComment(Id, commentId, up);
+        await Load();
+    }
+
+    private static string FormatDate(DateTime date) =>
+        date.ToLocalTime().ToString("dd-MM-yyyy HH:mm");
 }
