@@ -68,4 +68,28 @@ public class ApiService
         // Return the updated post (vote increased)
         return updatedPost;
     }
+    
+    public async Task<Post> CreatePost(string title, string content, int userId)
+    {
+        string url = $"{baseAPI}posts/";
+
+        var post = new Post
+        {
+            Title = title,
+            Content = content,
+            User = new User
+            {
+                Id = userId
+            }
+        };
+
+        HttpResponseMessage response = await http.PostAsJsonAsync(url, post);
+
+        response.EnsureSuccessStatusCode();
+
+        Post? createdPost = await response.Content.ReadFromJsonAsync<Post>();
+
+        return createdPost ?? throw new Exception("Failed to create post.");
+    }
+
 }

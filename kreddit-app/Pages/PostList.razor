@@ -31,9 +31,11 @@ else
                 <td>@(post.Upvotes - post.Downvotes)</td>
                 <td><button @onclick="() => Upvote(post.Id)">Upvote</button></td>
                 <td><button @onclick="() => Downvote(post.Id)">Downvote</button></td>
+                
             </tr>
         }
     </table>
+    <CreatePost></CreatePost>
 
     <br/>
 }
