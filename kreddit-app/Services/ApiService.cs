@@ -24,7 +24,7 @@ public class ApiService
         return posts ?? Array.Empty<Post>();
     }
 
-    // GET /posts/{id}/  (null hvis tråden ikke findes)
+    // GET /posts/{id}/ 
     public async Task<Post?> GetPost(int id)
     {
         var response = await http.GetAsync($"{baseAPI}posts/{id}/");
@@ -35,8 +35,7 @@ public class ApiService
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<Post>();
     }
-
-    // POST /posts   (enten content eller url)
+    
     // POST /posts
     public async Task<Post> CreatePost(string title, string content, string username)
     {

@@ -5,7 +5,7 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
   "mainAssemblyName": "kreddit-app",
   "applicationEnvironment": "Development",
   "resources": {
-    "hash": "sha256-hRTt2tToM0rRcQxInJOdX15OxpMQz7S3K2+ORSScZbY=",
+    "hash": "sha256-G2TYuoywWm42biSyvLFU7hN3hbB1SLE27WFdCLXSa4g=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.b6l13xorvf.js"
@@ -1362,8 +1362,8 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
       },
       {
         "virtualPath": "kreddit-app.wasm",
-        "name": "kreddit-app.n4v94fuzhd.wasm",
-        "hash": "sha256-KToHp2YWrUHVR1TTWRlg838pUyFZpm2/3JXjoy5N1SI=",
+        "name": "kreddit-app.pk02m8bvwt.wasm",
+        "hash": "sha256-adVdR0TM2sJok3ByydW22D+61bCUV3Bd+R/3VVpK+kM=",
         "cache": "force-cache"
       }
     ],
@@ -1376,8 +1376,8 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
       },
       {
         "virtualPath": "kreddit-app.pdb",
-        "name": "kreddit-app.usaszucf91.pdb",
-        "hash": "sha256-ruBbdGfdOPdwv2iG0n50W5fEIiolq3KNRPMXAC9wjN8=",
+        "name": "kreddit-app.a2u3lj4qzq.pdb",
+        "hash": "sha256-DiQP2sLbbSWOGUGWMDiUHOVq8D13XJ7njyOI41VGoQ8=",
         "cache": "force-cache"
       }
     ],

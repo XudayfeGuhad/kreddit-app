@@ -2378,10 +2378,10 @@
 /Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/bin/Debug/net10.0/wwwroot/_framework/shared.g1cqs6pqxq.wasm.gz
 /Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/obj/Debug/net10.0/compressed/vv5y6aj9od-{0}-g1cqs6pqxq-g1cqs6pqxq.gz
 /Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/obj/Debug/net10.0/compressed/fptgwokidb-{0}-d8t1wdlpnx-d8t1wdlpnx.gz
-/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/bin/Debug/net10.0/wwwroot/_framework/kreddit-app.n4v94fuzhd.wasm
-/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/bin/Debug/net10.0/wwwroot/_framework/kreddit-app.usaszucf91.pdb
-/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/bin/Debug/net10.0/wwwroot/_framework/kreddit-app.usaszucf91.pdb.gz
-/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/bin/Debug/net10.0/wwwroot/_framework/kreddit-app.n4v94fuzhd.wasm.gz
-/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/obj/Debug/net10.0/compressed/djmg9rue8d-{0}-n4v94fuzhd-n4v94fuzhd.gz
-/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/obj/Debug/net10.0/compressed/3j0lzlkx3o-{0}-usaszucf91-usaszucf91.gz
-/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/obj/Debug/net10.0/compressed/ganrevg1o6-{0}-zmdjxlszcq-zmdjxlszcq.gz
+/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/bin/Debug/net10.0/wwwroot/_framework/kreddit-app.a2u3lj4qzq.pdb
+/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/bin/Debug/net10.0/wwwroot/_framework/kreddit-app.pk02m8bvwt.wasm
+/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/bin/Debug/net10.0/wwwroot/_framework/kreddit-app.a2u3lj4qzq.pdb.gz
+/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/bin/Debug/net10.0/wwwroot/_framework/kreddit-app.pk02m8bvwt.wasm.gz
+/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/obj/Debug/net10.0/compressed/djmg9rue8d-{0}-pk02m8bvwt-pk02m8bvwt.gz
+/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/obj/Debug/net10.0/compressed/3j0lzlkx3o-{0}-a2u3lj4qzq-a2u3lj4qzq.gz
+/Users/sebastianhansen/3.semester/SoftwareProgrammering/kreddit-app/kreddit-app/obj/Debug/net10.0/compressed/ganrevg1o6-{0}-n0g4dnb50v-n0g4dnb50v.gz
