@@ -1,0 +1,6 @@
+@Kreddit.api3_HostAddress = http://localhost:5086
+
+GET {{Kreddit.api3_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
